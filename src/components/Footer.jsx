@@ -110,7 +110,7 @@ const Footer = () => {
                         <p className="text-white/35 text-sm mb-4">
                             Get weekly career insights and new journeys.
                         </p>
-                        <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
+                        <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center w-full">
                             <input
                                 type="email"
                                 value={email}
@@ -120,7 +120,7 @@ const Footer = () => {
                             />
                             <button
                                 type="submit"
-                                className="px-4 py-2.5 rounded-lg bg-[#C4A052] hover:bg-[#D4B062] text-black font-medium text-sm transition-colors"
+                                className="px-4 py-2.5 rounded-lg bg-[#C4A052] hover:bg-[#D4B062] text-black font-medium text-sm transition-colors h-full sm:h-auto"
                             >
                                 Join
                             </button>
@@ -142,11 +142,11 @@ const Footer = () => {
                 <div className="h-px bg-gradient-to-r from-transparent via-white/8 to-transparent mb-8" />
 
                 {/* Bottom Section */}
-                <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
                     <p className="text-white/25 text-sm">
                         2024 PathWall. All rights reserved.
                     </p>
-                    <div className="flex gap-6">
+                    <div className="flex gap-6 justify-center md:justify-end w-full md:w-auto">
                         <Link to="/privacy" className="text-white/25 hover:text-white/50 text-sm transition-colors">
                             Privacy Policy
                         </Link>

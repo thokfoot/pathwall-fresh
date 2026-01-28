@@ -64,10 +64,10 @@ const JourneyThread = memo(function JourneyThread({ journey, index, active, setA
             onMouseLeave={() => setActive(null)}
         >
             {/* SVG Wave */}
-            <svg 
-                className="absolute left-1/2 -translate-x-1/2 h-full overflow-visible" 
+            <svg
+                className="absolute left-1/2 -translate-x-1/2 h-full overflow-visible"
                 style={{ width: '24px' }}
-                viewBox="0 0 100 100" 
+                viewBox="0 0 100 100"
                 preserveAspectRatio="none"
             >
                 <defs>
@@ -91,9 +91,9 @@ const JourneyThread = memo(function JourneyThread({ journey, index, active, setA
 
             {/* Milestone dots */}
             {journey.positions.map((pos, i) => (
-                <div 
-                    key={i} 
-                    className="absolute left-1/2 -translate-x-1/2" 
+                <div
+                    key={i}
+                    className="absolute left-1/2 -translate-x-1/2"
                     style={{ top: `${pos}%` }}
                     onMouseEnter={() => setHoveredMilestone(i)}
                     onMouseLeave={() => setHoveredMilestone(null)}
@@ -112,8 +112,8 @@ const JourneyThread = memo(function JourneyThread({ journey, index, active, setA
                     {hoveredMilestone === i && (
                         <div
                             className="absolute left-full ml-3 top-1/2 -translate-y-1/2 px-2.5 py-1.5 rounded-lg whitespace-nowrap z-50"
-                            style={{ 
-                                background: 'rgba(8,8,10,0.95)', 
+                            style={{
+                                background: 'rgba(8,8,10,0.95)',
                                 border: `1px solid ${journey.color}35`,
                                 boxShadow: `0 6px 16px rgba(0,0,0,0.5)`
                             }}
@@ -127,15 +127,31 @@ const JourneyThread = memo(function JourneyThread({ journey, index, active, setA
 
             {/* Career name label */}
             <div
-                className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-center transition-all duration-300 whitespace-nowrap"
-                style={{ opacity: isActive ? 1 : 0.35 }}
+                className="absolute -bottom-36 left-1/2 -translate-x-1/2 text-center transition-all duration-300"
+                style={{
+                    opacity: isActive ? 1 : 0.35,
+                    width: '100%',
+                    maxWidth: 240,
+                    minHeight: 72,
+                    padding: '0 8px',
+                    textAlign: 'center',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}
             >
-                <p 
-                    className="font-semibold"
-                    style={{ 
-                        fontSize: isActive ? '11px' : '8px',
-                        color: journey.color, 
-                        textShadow: isActive ? `0 0 12px ${journey.glow}` : 'none' 
+                <p
+                    className="font-bold"
+                    style={{
+                        fontSize: isActive ? '28px' : '18px',
+                        color: journey.color,
+                        textShadow: isActive ? `0 0 20px ${journey.glow}` : 'none',
+                        whiteSpace: 'normal',
+                        wordBreak: 'break-word',
+                        maxWidth: '100%',
+                        margin: 0,
+                        lineHeight: 1.22,
+                        textAlign: 'center'
                     }}
                 >
                     {journey.name}
@@ -153,9 +169,9 @@ const ThreadsVisualizer = () => {
     const animationRef = useRef(null)
 
     // Filter journeys based on search query
-    const filteredJourneys = searchQuery.trim() === '' 
-        ? allJourneys 
-        : allJourneys.filter(j => 
+    const filteredJourneys = searchQuery.trim() === ''
+        ? allJourneys
+        : allJourneys.filter(j =>
             j.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
             j.title.toLowerCase().includes(searchQuery.toLowerCase())
         )
@@ -180,7 +196,7 @@ const ThreadsVisualizer = () => {
             })
             animationRef.current = requestAnimationFrame(animate)
         }
-        
+
         animationRef.current = requestAnimationFrame(animate)
         return () => {
             if (animationRef.current) cancelAnimationFrame(animationRef.current)
@@ -188,21 +204,21 @@ const ThreadsVisualizer = () => {
     }, [searchQuery])
 
     // Double the journeys for infinite scroll effect
-    const displayJourneys = searchQuery.trim() === '' 
-        ? [...allJourneys, ...allJourneys] 
+    const displayJourneys = searchQuery.trim() === ''
+        ? [...allJourneys, ...allJourneys]
         : filteredJourneys
 
     return (
         <section id="journeys-section" className="relative py-16 overflow-hidden">
             {/* Background */}
-            <div 
+            <div
                 className="absolute inset-0"
                 style={{ background: 'radial-gradient(ellipse 80% 60% at 50% 50%, #12100e 0%, #0a0a0a 60%, #08080a 100%)' }}
             />
-            
+
             {/* Subtle glow */}
             <div className="absolute inset-0 pointer-events-none">
-                <div 
+                <div
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full"
                     style={{ background: 'radial-gradient(circle, rgba(196,160,82,0.03) 0%, transparent 70%)' }}
                 />
@@ -242,7 +258,7 @@ const ThreadsVisualizer = () => {
                             className="flex-1 bg-transparent text-white placeholder:text-white/25 text-sm focus:outline-none"
                         />
                         {searchQuery && (
-                            <button 
+                            <button
                                 onClick={() => setSearchQuery('')}
                                 className="text-white/30 hover:text-white/60 transition-colors"
                             >
@@ -268,10 +284,10 @@ const ThreadsVisualizer = () => {
                     <div className="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none"
                         style={{ background: 'linear-gradient(to left, #0a0a0a 0%, transparent 100%)' }} />
 
-                    <div 
+                    <div
                         ref={containerRef}
                         className="flex items-end gap-1 h-full pb-10"
-                        style={{ 
+                        style={{
                             transform: searchQuery.trim() === '' ? `translateX(-${scrollOffset}px)` : 'translateX(0)',
                             transition: searchQuery.trim() !== '' ? 'transform 0.3s ease' : 'none',
                             justifyContent: searchQuery.trim() !== '' ? 'center' : 'flex-start',
@@ -279,9 +295,9 @@ const ThreadsVisualizer = () => {
                         }}
                     >
                         {displayJourneys.map((journey, index) => (
-                            <JourneyThread 
-                                key={`${journey.id}-${index}`} 
-                                journey={journey} 
+                            <JourneyThread
+                                key={`${journey.id}-${index}`}
+                                journey={journey}
                                 index={index % allJourneys.length}
                                 active={active}
                                 setActive={setActive}
@@ -295,7 +311,7 @@ const ThreadsVisualizer = () => {
                 {filteredJourneys.length === 0 && (
                     <div className="text-center py-8">
                         <p className="text-white/40 text-sm">No journeys found for "{searchQuery}"</p>
-                        <button 
+                        <button
                             onClick={() => setSearchQuery('')}
                             className="mt-2 text-[#C4A052] text-sm hover:underline"
                         >
@@ -306,7 +322,7 @@ const ThreadsVisualizer = () => {
 
                 {/* CTA */}
                 <div className="text-center mt-8">
-                    <button 
+                    <button
                         className="px-5 py-2.5 rounded-lg font-medium text-sm transition-all duration-300"
                         style={{
                             background: 'rgba(196, 160, 82, 0.1)',

@@ -1,4 +1,126 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+﻿/* === CYBER GRID BACKGROUND === */
+.cyber-grid-bg {
+  background-color: var(--color-bg-dark);
+  background-image:
+    linear-gradient(to right, #80808012 1px, transparent 1px),
+    linear-gradient(to bottom, #80808012 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-attachment: fixed;
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
+
+/* === GLASS PILL FILTERS === */
+.filter-bar {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+  justify-content: center;
+  scrollbar-width: none;
+}
+
+.filter-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-pill {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1.5px solid rgba(255, 255, 255, 0.13);
+  color: #fff;
+  border-radius: 9999px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+}
+
+.filter-pill.selected,
+.filter-pill:active {
+  background: linear-gradient(90deg, #C4A052 60%, #9A7B3D 100%);
+  color: #0a0a0a;
+  border-color: #C4A052;
+  box-shadow: 0 0 0 2px #C4A05244;
+}
+
+.filter-pill:focus-visible {
+  outline: 2px solid #C4A052;
+  outline-offset: 2px;
+}
+
+/* === NEON SEARCH BAR === */
+.neon-search:focus-within {
+  box-shadow: 0 0 15px #C4A052, 0 0 0 2px #C4A052;
+  border-color: #C4A052 !important;
+}
+
+/* === MAGNETIC SHIMMER BUTTON === */
+.magnetic-btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.magnetic-btn .shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.22) 40%, rgba(255, 255, 255, 0.08) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.2s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* === MARQUEE ANIMATION FOR MOBILE CAREERS === */
+
+.marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: rgba(10, 10, 10, 0.92);
+  /* More opaque for contrast */
+}
+
+.marquee-content {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 18s linear infinite;
+}
+
+.marquee-content span {
+  font-weight: 700;
+  text-shadow: 0 2px 8px #000, 0 0 4px #C4A05288;
+  letter-spacing: 0.01em;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -20,11 +142,11 @@
   --color-text-muted: rgba(255, 255, 255, 0.4);
   --color-border: rgba(255, 255, 255, 0.08);
   --color-border-hover: rgba(196, 160, 82, 0.3);
-  
+
   /* Typography Scale */
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-  
+
   /* Font Sizes */
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -36,7 +158,7 @@
   --text-4xl: 2.25rem;
   --text-5xl: 3rem;
   --text-6xl: 3.75rem;
-  
+
   /* Spacing Scale */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -47,20 +169,20 @@
   --space-12: 3rem;
   --space-16: 4rem;
   --space-24: 6rem;
-  
+
   /* Shadows */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
   --shadow-glow: 0 0 40px rgba(196, 160, 82, 0.15);
-  
+
   /* Transitions */
   --transition-fast: 150ms ease;
   --transition-base: 300ms ease;
   --transition-slow: 500ms ease;
   --transition-spring: 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
-  
+
   /* Border Radius */
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
@@ -93,19 +215,41 @@ body {
 }
 
 /* === TYPOGRAPHY === */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
-h1 { font-size: var(--text-5xl); }
-h2 { font-size: var(--text-4xl); }
-h3 { font-size: var(--text-3xl); }
-h4 { font-size: var(--text-2xl); }
-h5 { font-size: var(--text-xl); }
-h6 { font-size: var(--text-lg); }
+h1 {
+  font-size: var(--text-5xl);
+}
+
+h2 {
+  font-size: var(--text-4xl);
+}
+
+h3 {
+  font-size: var(--text-3xl);
+}
+
+h4 {
+  font-size: var(--text-2xl);
+}
+
+h5 {
+  font-size: var(--text-xl);
+}
+
+h6 {
+  font-size: var(--text-lg);
+}
 
 p {
   line-height: 1.7;
@@ -136,6 +280,7 @@ p {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -143,8 +288,13 @@ p {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideInLeft {
@@ -152,6 +302,7 @@ p {
     opacity: 0;
     transform: translateX(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -163,6 +314,7 @@ p {
     opacity: 0;
     transform: translateX(30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -174,6 +326,7 @@ p {
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -181,18 +334,37 @@ p {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(196, 160, 82, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(196, 160, 82, 0.4); }
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(196, 160, 82, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(196, 160, 82, 0.4);
+  }
 }
 
 @keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 /* Animation Classes */
@@ -225,11 +397,25 @@ p {
 }
 
 /* Staggered Animation Delays */
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-.delay-400 { animation-delay: 400ms; }
-.delay-500 { animation-delay: 500ms; }
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
 
 /* === GLASSMORPHISM === */
 .glass {
@@ -358,12 +544,10 @@ a:focus-visible {
 
 /* === LOADING SKELETON === */
 .skeleton {
-  background: linear-gradient(
-    90deg,
-    var(--color-bg-card) 0%,
-    var(--color-bg-elevated) 50%,
-    var(--color-bg-card) 100%
-  );
+  background: linear-gradient(90deg,
+      var(--color-bg-card) 0%,
+      var(--color-bg-elevated) 50%,
+      var(--color-bg-card) 100%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: var(--radius-md);
@@ -386,10 +570,18 @@ a:focus-visible {
 
 /* === RESPONSIVE TYPOGRAPHY === */
 @media (max-width: 768px) {
-  h1 { font-size: var(--text-4xl); }
-  h2 { font-size: var(--text-3xl); }
-  h3 { font-size: var(--text-2xl); }
-  
+  h1 {
+    font-size: var(--text-4xl);
+  }
+
+  h2 {
+    font-size: var(--text-3xl);
+  }
+
+  h3 {
+    font-size: var(--text-2xl);
+  }
+
   .container-premium {
     padding: 0 var(--space-4);
   }

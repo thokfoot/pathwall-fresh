@@ -45,22 +45,21 @@ const Navbar = () => {
                                     color: '#0a0a0a',
                                 }}
                             >
-                                P
+                                C
                             </div>
                         </div>
-                        <span className="text-xl font-bold hidden sm:block">
-                            <span className="text-gradient">Path</span>
-                            <span className="text-white/80">Wall</span>
+                        <span className="text-xl font-bold hidden sm:block text-white/90">
+                            Co <span className="font-normal text-white/60">Ends</span>
                         </span>
                     </Link>
 
                     {/* Center Search Bar - Desktop */}
                     <div className="hidden lg:flex flex-1 max-w-md mx-8">
                         <div
-                            className={`relative w-full flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-300 ${isSearchFocused
+                            className={`neon-search relative w-full flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-300 ${isSearchFocused
                                 ? 'bg-white/10 border-[#C4A052]/30'
                                 : 'bg-white/5 border-white/10'
-                            }`}
+                                }`}
                             style={{ border: '1px solid' }}
                         >
                             <svg className="w-4 h-4 text-white/40 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
