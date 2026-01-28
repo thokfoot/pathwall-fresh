@@ -171,22 +171,32 @@ const HomePage = () => {
 
 
             {/* Infinite Marquee for Careers (moving rows) - always visible below Navbar */}
-            <div className="w-full overflow-visible mt-12 mb-4" style={{ position: 'relative', zIndex: 30 }}>
-                <div className="marquee careers-top text-xs font-semibold text-[#C4A052] bg-black/80 py-1 shadow-lg" style={{ position: 'relative', zIndex: 31, borderBottom: '1px solid #2d2412', marginBottom: '2px' }}>
+            <div
+                className="w-full overflow-visible fixed left-0 right-0"
+                style={{ zIndex: 40, top: undefined }}
+            >
+                <style>{`
+                    .marquee-fixed-top { top: 64px; }
+                    @media (min-width: 1024px) { .marquee-fixed-top { top: 80px; } }
+                `}</style>
+                <div className="marquee-fixed-top" style={{ position: 'fixed', left: 0, right: 0, zIndex: 40 }}>
+                <div className="marquee careers-top text-xs font-semibold text-[#C4A052] bg-black/80 py-1 shadow-lg" style={{ borderBottom: '1px solid #2d2412', marginBottom: '2px' }}>
                     <div className="marquee-content flex gap-8 animate-marquee">
                         {leftCareers.map((career, idx) => (
                             <span key={idx}>{career}</span>
                         ))}
                     </div>
                 </div>
-                <div className="marquee careers-bottom text-xs font-semibold text-[#C4A052] bg-black/70 py-1" style={{ position: 'relative', zIndex: 30 }}>
+                <div className="marquee careers-bottom text-xs font-semibold text-[#C4A052] bg-black/70 py-1">
                     <div className="marquee-content flex gap-8 animate-marquee-reverse">
                         {rightCareers.map((career, idx) => (
                             <span key={idx}>{career}</span>
                         ))}
                     </div>
                 </div>
+                </div>
             </div>
+            <div style={{ height: '56px' }} /> {/* Spacer for marquee height so content below is not hidden */}
 
 
             <HeroSection brandName="Co Ends" />
